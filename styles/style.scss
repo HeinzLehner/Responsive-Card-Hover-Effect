@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Tinos&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Stardos+Stencil&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow&display=swap');
+
+$background1: #03A2DA;
+$background2: #FEC503;
+$textcolor: #000;
+$textcolorbt: #fff;
+$ff_text: 'Tinos', sans-serif;
+$ff_title: 'Stardos Stencil', sans-serif;
+$ff_link: 'Barlow', sans-serif;
+$breakpoint_tablet: 991px;
+$transition_time: 0.6s;
+
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: $ff_text;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+
+    .card {
+        position: relative;
+        width: 600px;
+        height: 350px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        transition: $transition_time;
+
+        .circle {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .circle::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: $background1;
+            clip-path: circle(120px at center);
+            transition: $transition_time;
+        }
+
+        img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: 350px;
+            pointer-events: none;
+            transition: $transition_time;
+        }
+
+        .content {
+            position: relative;
+            width: 50%;
+            left: 20%;
+            padding: 20px;
+            transition: $transition_time;
+            opacity: 0;
+            visibility: hidden;
+
+            h2 {
+                color: $textcolor;
+                font-family: $ff_title;
+                font-weight: 300;
+                font-size: 2em;
+                line-height: 1.4em;
+            }
+
+            p {
+                color: $textcolor;
+                font-weight: 400;
+                font-size: 1.2em;
+            }
+
+            a {
+                position: relative;
+                font-family: $ff_link;
+                font-weight: 700;
+                color: $textcolorbt;
+                padding: 10px 20px;
+                border-radius: 10px;
+                background: $background1;
+                margin-top: 10px;
+                display: inline-block;
+                text-transform: uppercase;
+                text-decoration: none;
+                border: 1px solid;
+                transition: $transition_time;
+            }
+        }
+    }
+    .card:hover {
+
+        img {
+            left: 72%;
+            height: 550px;
+        }
+
+        .content {
+            left: 8%;
+            opacity: 1;
+            visibility: visible;
+
+            a:hover {
+                box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+            }
+        }
+
+        .circle::before {
+            clip-path: circle(400px at center);
+            background: $background2;
+        }
+    }
+    @media (max-width: $breakpoint_tablet) {
+
+        .card {
+            width: auto;
+            max-width: 400px;
+            align-items: flex-start;
+
+            .content {
+                width: 100%;
+                left: 0;
+                padding: 40px 60px 40px 0px;
+            }
+        }
+
+        .card:hover {
+            height: 600px;
+            img {
+                top: 65%;
+                left: 50%;
+                height: 360px;
+            }
+        }
+    }
+}
